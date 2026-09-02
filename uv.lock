@@ -18,12 +18,14 @@ source = { virtual = "." }
 dependencies = [
     { name = "django" },
     { name = "mysqlclient" },
+    { name = "python-decouple" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "django", specifier = ">=6.1" },
     { name = "mysqlclient", specifier = ">=2.2.8" },
+    { name = "python-decouple", specifier = ">=3.8" },
 ]
 
 [[package]]
@@ -48,6 +50,15 @@ sdist = { url = "https://files.pythonhosted.org/packages/eb/b0/9df076488cb2e536d
 wheels = [
     { url = "https://files.pythonhosted.org/packages/42/44/6ae21b4e8490eb5167d04fa7452c462ffd72a502b96bf531477ef044a380/mysqlclient-2.2.8-cp314-cp314-win_amd64.whl", hash = "sha256:9bed7c8d3b629bdc09e17fb628d5b3b0a5fd1f12b09432b464b9126c727bedc0", size = 211644, upload-time = "2026-02-10T10:58:45.022Z" },
     { url = "https://files.pythonhosted.org/packages/66/e5/037d55623be9f681236e04abe12e1290847c06bd48270c3f19ac33493cbf/mysqlclient-2.2.8-cp314-cp314t-win_amd64.whl", hash = "sha256:260cce0e81446c83bf0a389e0fae38d68547d9f8fc0833bc733014e10ce28a99", size = 213067, upload-time = "2026-02-10T10:58:43.389Z" },
+]
+
+[[package]]
+name = "python-decouple"
+version = "3.8"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e1/97/373dcd5844ec0ea5893e13c39a2c67e7537987ad8de3842fe078db4582fa/python-decouple-3.8.tar.gz", hash = "sha256:ba6e2657d4f376ecc46f77a3a615e058d93ba5e465c01bbe57289bfb7cce680f", size = 9612, upload-time = "2023-03-01T19:38:38.143Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a2/d4/9193206c4563ec771faf2ccf54815ca7918529fe81f6adb22ee6d0e06622/python_decouple-3.8-py3-none-any.whl", hash = "sha256:d0d45340815b25f4de59c974b855bb38d03151d81b037d9e3f463b0c9f8cbd66", size = 9947, upload-time = "2023-03-01T19:38:36.015Z" },
 ]
 
 [[package]]
