@@ -22,22 +22,21 @@ CREATE DATABASE IF NOT EXISTS bedandbreakfast;
 USE bedandbreakfast; -- dice in quale DataBase creare le tabelle
 
 CREATE TABLE CAMERA (
-tipologia CHAR(15) NOT NULL,
-numeroMassimoOspiti NUMERIC(2) NOT NULL,
-piano NUMERIC(2) NOT NULL,
-descrizione VARCHAR(200) NOT NULL,
-stato CHAR(12) NOT NULL,
-prezzoBaseNOTte NUMERIC(8,2) NOT NULL,
-numeroCamera NUMERIC(3) NOT NULL,
-attivo BOOLEAN NOT NULL,
-CONSTRAINT ID_CAMERA_ID PRIMARY KEY (piano, numeroCamera));
+    tipologia CHAR(15) NOT NULL,
+    numeroMassimoOspiti NUMERIC(2) NOT NULL,
+    piano NUMERIC(2) NOT NULL,
+    descrizione VARCHAR(200) NOT NULL,
+    stato CHAR(12) NOT NULL,
+    prezzoBaseNOTte NUMERIC(8,2) NOT NULL,
+    numeroCamera NUMERIC(3) NOT NULL,
+    attivo BOOLEAN NOT NULL,
+    CONSTRAINT ID_CAMERA_ID PRIMARY KEY (piano, numeroCamera));
     
 CREATE TABLE INCLUDE (
     nomeServizio VARCHAR(20) NOT NULL,
     codicePrenotazione NUMERIC(6) NOT NULL,
     CONSTRAINT ID_INCLUDE_ID PRIMARY KEY (codicePrenotazione, nomeServizio));
     
-- Occupante
 CREATE TABLE OCCUPANTE (
     codicePrenotazione NUMERIC(6) NOT NULL,
     nome VARCHAR(25) NOT NULL,
