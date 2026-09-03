@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>{% block title %}Gestione di un Bed & Breakfast{% endblock %}</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        {#i tag '{% block nomeBlocco %} ... {% endblock %}' servono per realizzare una struttura a template html indicando quali parti di codice permettere a pagine figlie di modificare #}
+        {% block sidebar %}
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+        </ul>
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
