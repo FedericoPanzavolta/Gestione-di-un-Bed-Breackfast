@@ -27,7 +27,7 @@ numeroMassimoOspiti NUMERIC(2) NOT NULL,
 piano NUMERIC(2) NOT NULL,
 descrizione VARCHAR(200) NOT NULL,
 stato CHAR(12) NOT NULL,
-prezzoBaseNOTte NUMERIC(8,2) NOT NULL,
+prezzoBaseNotte NUMERIC(8,2) NOT NULL,
 numeroCamera NUMERIC(3) NOT NULL,
 attivo BOOLEAN NOT NULL,
 CONSTRAINT ID_CAMERA_ID PRIMARY KEY (piano, numeroCamera)
