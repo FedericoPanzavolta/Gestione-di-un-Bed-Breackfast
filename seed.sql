@@ -9,7 +9,7 @@
 -- ********************************************* 
 -- Database Section
 -- ________________ 
--- CREATE database Schema Logico;
+-- CREATE database Schema Logico; (creato in automatico da db-main)
 
 CREATE DATABASE IF NOT EXISTS bedandbreakfast;
 
