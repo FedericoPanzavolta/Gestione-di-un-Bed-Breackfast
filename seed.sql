@@ -29,6 +29,7 @@ CREATE TABLE CAMERA (
     stato char(12) not null,
     prezzoBaseNotte numeric(8,2) not null,
     numeroCamera numeric(3) not null,
+    attivo boolean not null,
     CONSTRAINT ID_CAMERA_ID PRIMARY KEY (piano, numeroCamera));
     
 CREATE TABLE INCLUDE (
@@ -70,6 +71,7 @@ CREATE TABLE PERSONALE (
     password varchar(16) not null,
     documentoIdentita char(9) not null,
     ruolo char(25) not null,
+    attivo boolean not null,
     CONSTRAINT ID_PERSONALE_ID PRIMARY KEY (documentoIdentita),
     CONSTRAINT SID_PERSONALE_ID UNIQUE (e_mail));
     
@@ -106,6 +108,7 @@ CREATE TABLE SERVIZIO_AGGIUNTIVO (
     nome varchar(20) not null,
     descrizione varchar(200) not null,
     costo numeric(5,2) not null,
+    attivo boolean not null,
     CONSTRAINT ID_SERVIZIO_AGGIUNTIVO_ID PRIMARY KEY (nome));
     
 CREATE TABLE STAGIONE (
