@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class BedandbreackfastConfig(AppConfig):
-    name = 'BedAndBreackfast'
+class BedandbreakfastConfig(AppConfig):
+    name = 'BedAndBreakfast'
