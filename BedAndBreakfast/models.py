@@ -15,12 +15,11 @@ class Camera(models.Model):
     piano = models.DecimalField(max_digits=2, decimal_places=0)
     descrizione = models.CharField(max_length=200)
     stato = models.CharField(max_length=12)
-    prezzobasenotte = models.DecimalField(db_column='prezzoBaseNOTte', max_digits=8, decimal_places=2)  # Field name made lowercase.
+    prezzobasenotte = models.DecimalField(db_column='prezzoBaseNotte', max_digits=8, decimal_places=2)  # Field name made lowercase.
     numerocamera = models.DecimalField(db_column='numeroCamera', max_digits=3, decimal_places=0)  # Field name made lowercase.
-    attivo = models.IntegerField()
+    attivo = models.BooleanField()
 
     class Meta:
-        managed = False
         db_table = 'CAMERA'
         unique_together = (('piano', 'numerocamera'),)
 
@@ -31,7 +30,6 @@ class Include(models.Model):
     codiceprenotazione = models.ForeignKey('Prenotazione', models.DO_NOTHING, db_column='codicePrenotazione')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'INCLUDE'
         unique_together = (('codiceprenotazione', 'nomeservizio'),)
 
@@ -44,7 +42,6 @@ class Occupante(models.Model):
     documentoidentita = models.CharField(db_column='documentoIdentita', max_length=9)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'OCCUPANTE'
         unique_together = (('codiceprenotazione', 'documentoidentita'),)
 
@@ -58,7 +55,6 @@ class Ospite(models.Model):
     documentoidentita = models.CharField(db_column='documentoIdentita', primary_key=True, max_length=9)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'OSPITE'
 
 
@@ -70,7 +66,6 @@ class Pagamento(models.Model):
     data = models.DateField()
 
     class Meta:
-        managed = False
         db_table = 'PAGAMENTO'
 
 
@@ -82,10 +77,9 @@ class Personale(models.Model):
     password = models.CharField(max_length=16)
     documentoidentita = models.CharField(db_column='documentoIdentita', primary_key=True, max_length=9)  # Field name made lowercase.
     ruolo = models.CharField(max_length=25)
-    attivo = models.IntegerField()
+    attivo = models.BooleanField()
 
     class Meta:
-        managed = False
         db_table = 'PERSONALE'
 
 
@@ -102,7 +96,6 @@ class Prenotazione(models.Model):
     datainiziostagione = models.ForeignKey('Stagione', models.DO_NOTHING, db_column='dataInizioStagione', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'PRENOTAZIONE'
 
 
@@ -114,7 +107,6 @@ class Pulizia(models.Model):
     documentoidentitaaddetto = models.ForeignKey(Personale, models.DO_NOTHING, db_column='documentoIdentitaAddetto')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'PULIZIA'
         unique_together = (('piano', 'numerocamera', 'data'),)
 
@@ -127,7 +119,6 @@ class Recensione(models.Model):
     data = models.DateField()
 
     class Meta:
-        managed = False
         db_table = 'RECENSIONE'
 
 
@@ -135,10 +126,9 @@ class ServizioAggiuntivo(models.Model):
     nome = models.CharField(primary_key=True, max_length=20)
     descrizione = models.CharField(max_length=200)
     costo = models.DecimalField(max_digits=5, decimal_places=2)
-    attivo = models.IntegerField()
+    attivo = models.BooleanField()
 
     class Meta:
-        managed = False
         db_table = 'SERVIZIO_AGGIUNTIVO'
 
 
@@ -149,5 +139,4 @@ class Stagione(models.Model):
     datafine = models.DateField(db_column='dataFine')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'STAGIONE'
