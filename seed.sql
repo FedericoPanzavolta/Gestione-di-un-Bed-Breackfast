@@ -2,8 +2,8 @@
 -- * Standard SQL generation                   
 -- *--------------------------------------------
 -- * DB-MAIN version: 11.0.2              
--- * Generator date: Sep 14 2021              
--- * Generation date: Wed Sep  2 18:06:05 2026 
+-- * Generator DATE: Sep 14 2021              
+-- * Generation DATE: Wed Sep  2 18:06:05 2026 
 -- * LUN file: C:\Users\fedep\Desktop\Gestione di un B&B\Gestione di un Bed & Breakfast.lun 
 -- * Schema: Schema Logico/SQL1 
 -- ********************************************* 
@@ -22,100 +22,101 @@ CREATE DATABASE IF NOT EXISTS bedandbreakfast;
 USE bedandbreakfast; -- dice in quale DataBase creare le tabelle
 
 CREATE TABLE CAMERA (
-    tipologia char(15) not null,
-    numeroMassimoOspiti numeric(2) not null,
-    piano numeric(2) not null,
-    descrizione varchar(200) not null,
-    stato char(12) not null,
-    prezzoBaseNotte numeric(8,2) not null,
-    numeroCamera numeric(3) not null,
-    attivo boolean not null,
-    CONSTRAINT ID_CAMERA_ID PRIMARY KEY (piano, numeroCamera));
+tipologia CHAR(15) NOT NULL,
+numeroMassimoOspiti NUMERIC(2) NOT NULL,
+piano NUMERIC(2) NOT NULL,
+descrizione VARCHAR(200) NOT NULL,
+stato CHAR(12) NOT NULL,
+prezzoBaseNOTte NUMERIC(8,2) NOT NULL,
+numeroCamera NUMERIC(3) NOT NULL,
+attivo BOOLEAN NOT NULL,
+CONSTRAINT ID_CAMERA_ID PRIMARY KEY (piano, numeroCamera));
     
 CREATE TABLE INCLUDE (
-    nomeServizio varchar(20) not null,
-    codicePrenotazione numeric(6) not null,
+    nomeServizio VARCHAR(20) NOT NULL,
+    codicePrenotazione NUMERIC(6) NOT NULL,
     CONSTRAINT ID_INCLUDE_ID PRIMARY KEY (codicePrenotazione, nomeServizio));
     
+- Occupante
 CREATE TABLE OCCUPANTE (
-    codicePrenotazione numeric(6) not null,
-    nome varchar(25) not null,
-    cognome varchar(25) not null,
-    documentoIdentita char(9) not null,
+    codicePrenotazione NUMERIC(6) NOT NULL,
+    nome VARCHAR(25) NOT NULL,
+    cognome VARCHAR(25) NOT NULL,
+    documentoIdentita CHAR(9) NOT NULL,
     CONSTRAINT ID_OCCUPANTE_ID PRIMARY KEY (codicePrenotazione, documentoIdentita));
     
 CREATE TABLE OSPITE (
-    nome varchar(25) not null,
-    cognome varchar(25) not null,
-    telefono char(15) not null,
-    e_mail varchar(50) not null,
-    password varchar(16) not null,
-    documentoIdentita char(9) not null,
+    nome VARCHAR(25) NOT NULL,
+    cognome VARCHAR(25) NOT NULL,
+    telefono CHAR(15) NOT NULL,
+    e_mail VARCHAR(50) NOT NULL,
+    password VARCHAR(16) NOT NULL,
+    documentoIdentita CHAR(9) NOT NULL,
     CONSTRAINT ID_OSPITE_ID PRIMARY KEY (documentoIdentita),
     CONSTRAINT SID_OSPITE_ID UNIQUE (e_mail));
     
 CREATE TABLE PAGAMENTO (
-    codicePagamento numeric(6) not null,
-    codicePrenotazione numeric(6) not null,
-    importoTotale numeric(8,2) not null,
-    metodo varchar(20) not null,
-    data date not null,
+    codicePagamento NUMERIC(6) NOT NULL,
+    codicePrenotazione NUMERIC(6) NOT NULL,
+    importoTotale NUMERIC(8,2) NOT NULL,
+    metodo VARCHAR(20) NOT NULL,
+    data DATE NOT NULL,
     CONSTRAINT ID_PAGAMENTO_ID PRIMARY KEY (codicePagamento),
     CONSTRAINT SID_PAGAM_PRENO_ID UNIQUE (codicePrenotazione));
     
 CREATE TABLE PERSONALE (
-    nome varchar(25) not null,
-    cognome varchar(25) not null,
-    telefono char(15) not null,
-    e_mail varchar(50) not null,
-    password varchar(16) not null,
-    documentoIdentita char(9) not null,
-    ruolo char(25) not null,
-    attivo boolean not null,
+    nome VARCHAR(25) NOT NULL,
+    cognome VARCHAR(25) NOT NULL,
+    telefono CHAR(15) NOT NULL,
+    e_mail VARCHAR(50) NOT NULL,
+    password VARCHAR(16) NOT NULL,
+    documentoIdentita CHAR(9) NOT NULL,
+    ruolo CHAR(25) NOT NULL,
+    attivo BOOLEAN NOT NULL,
     CONSTRAINT ID_PERSONALE_ID PRIMARY KEY (documentoIdentita),
     CONSTRAINT SID_PERSONALE_ID UNIQUE (e_mail));
     
 CREATE TABLE PRENOTAZIONE (
-    codicePrenotazione numeric(6) not null,
-    dataArrivo date not null,
-    dataPartenza date not null,
-    numeroOspiti numeric(2) not null,
-    stato char(12) not null,
-    dataCheckInEffettivo date,
-    documentoIdentitaOspite char(9) not null,
-    piano numeric(2) not null,
-    numeroCamera numeric(3) not null,
-    dataInizioStagione date,
+    codicePrenotazione NUMERIC(6) NOT NULL,
+    dataArrivo DATE NOT NULL,
+    dataPartenza DATE NOT NULL,
+    numeroOspiti NUMERIC(2) NOT NULL,
+    stato CHAR(12) NOT NULL,
+    dataCheckInEffettivo DATE,
+    documentoIdentitaOspite CHAR(9) NOT NULL,
+    piano NUMERIC(2) NOT NULL,
+    numeroCamera NUMERIC(3) NOT NULL,
+    dataInizioStagione DATE,
     CONSTRAINT ID_PRENOTAZIONE_ID PRIMARY KEY (codicePrenotazione));
     
 CREATE TABLE PULIZIA (
-    piano numeric(2) not null,
-    numeroCamera numeric(3) not null,
-    data date not null,
-    documentoIdentitaADDetto char(9) not null,
+    piano NUMERIC(2) NOT NULL,
+    numeroCamera NUMERIC(3) NOT NULL,
+    data DATE NOT NULL,
+    documentoIdentitaADDetto CHAR(9) NOT NULL,
     CONSTRAINT ID_PULIZIA_ID PRIMARY KEY (piano, numeroCamera, data));
     
 CREATE TABLE RECENSIONE (
-    codiceRecensione numeric(6) not null,
-    codicePrenotazione numeric(6) not null,
-    voto numeric(2) not null,
-    commento varchar(300),
-    data date not null,
+    codiceRecensione NUMERIC(6) NOT NULL,
+    codicePrenotazione NUMERIC(6) NOT NULL,
+    voto NUMERIC(2) NOT NULL,
+    commento VARCHAR(300),
+    data DATE NOT NULL,
     CONSTRAINT ID_RECENSIONE_ID PRIMARY KEY (codiceRecensione),
     CONSTRAINT SID_RECEN_PRENO_ID UNIQUE (codicePrenotazione));
     
 CREATE TABLE SERVIZIO_AGGIUNTIVO (
-    nome varchar(20) not null,
-    descrizione varchar(200) not null,
-    costo numeric(5,2) not null,
-    attivo boolean not null,
+    nome VARCHAR(20) NOT NULL,
+    descrizione VARCHAR(200) NOT NULL,
+    costo NUMERIC(5,2) NOT NULL,
+    attivo BOOLEAN NOT NULL,
     CONSTRAINT ID_SERVIZIO_AGGIUNTIVO_ID PRIMARY KEY (nome));
     
 CREATE TABLE STAGIONE (
-    nome varchar(20) not null,
-    moltiplicatore numeric(3,2) not null,
-    dataInizio date not null,
-    dataFine date not null,
+    nome VARCHAR(20) NOT NULL,
+    moltiplicatore NUMERIC(3,2) NOT NULL,
+    dataInizio DATE NOT NULL,
+    dataFine DATE NOT NULL,
     CONSTRAINT ID_STAGIONE_ID PRIMARY KEY (dataInizio));
     
 -- CONSTRAINTs Section
