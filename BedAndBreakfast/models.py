@@ -9,7 +9,7 @@ from django.db import models
 
 
 class Camera(models.Model):
-    pk = models.CompositePrimaryKey('piano', 'numeroCamera')
+    pk = models.CompositePrimaryKey('piano', 'numerocamera')
     tipologia = models.CharField(max_length=15)
     numeromassimoospiti = models.DecimalField(db_column='numeroMassimoOspiti', max_digits=2, decimal_places=0)  # Field name made lowercase.
     piano = models.DecimalField(max_digits=2, decimal_places=0)
@@ -25,7 +25,7 @@ class Camera(models.Model):
 
 
 class Include(models.Model):
-    pk = models.CompositePrimaryKey('codicePrenotazione', 'nomeServizio')
+    pk = models.CompositePrimaryKey('codiceprenotazione', 'nomeservizio')
     nomeservizio = models.ForeignKey('ServizioAggiuntivo', models.DO_NOTHING, db_column='nomeServizio')  # Field name made lowercase.
     codiceprenotazione = models.ForeignKey('Prenotazione', models.DO_NOTHING, db_column='codicePrenotazione')  # Field name made lowercase.
 
@@ -35,7 +35,7 @@ class Include(models.Model):
 
 
 class Occupante(models.Model):
-    pk = models.CompositePrimaryKey('codicePrenotazione', 'documentoIdentita')
+    pk = models.CompositePrimaryKey('codiceprenotazione', 'documentoidentita')
     codiceprenotazione = models.ForeignKey('Prenotazione', models.DO_NOTHING, db_column='codicePrenotazione')  # Field name made lowercase.
     nome = models.CharField(max_length=25)
     cognome = models.CharField(max_length=25)
@@ -91,8 +91,14 @@ class Prenotazione(models.Model):
     stato = models.CharField(max_length=12)
     datacheckineffettivo = models.DateField(db_column='dataCheckInEffettivo', blank=True, null=True)  # Field name made lowercase.
     documentoidentitaospite = models.ForeignKey(Ospite, models.DO_NOTHING, db_column='documentoIdentitaOspite')  # Field name made lowercase.
-    piano = models.ForeignKey(Camera, models.DO_NOTHING, db_column='piano')
-    numerocamera = models.ForeignKey(Camera, models.DO_NOTHING, db_column='numeroCamera', to_field='numeroCamera', related_name='prenotazione_numerocamera_set')  # Field name made lowercase.
+    piano = models.DecimalField(max_digits=2, decimal_places=0)
+    numerocamera = models.DecimalField(db_column='numeroCamera', max_digits=3, decimal_places=0) # Field name made lowercase.
+    camera = models.ForeignObject(
+        Camera,
+        on_delete=models.DO_NOTHING,
+        from_fields=('piano', 'numerocamera'),
+        to_fields=('piano', 'numerocamera'),
+    )
     datainiziostagione = models.ForeignKey('Stagione', models.DO_NOTHING, db_column='dataInizioStagione', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -100,9 +106,15 @@ class Prenotazione(models.Model):
 
 
 class Pulizia(models.Model):
-    pk = models.CompositePrimaryKey('piano', 'numeroCamera', 'data')
-    piano = models.ForeignKey(Camera, models.DO_NOTHING, db_column='piano')
-    numerocamera = models.ForeignKey(Camera, models.DO_NOTHING, db_column='numeroCamera', to_field='numeroCamera', related_name='pulizia_numerocamera_set')  # Field name made lowercase.
+    pk = models.CompositePrimaryKey('piano', 'numerocamera', 'data')
+    piano = models.DecimalField(max_digits=2, decimal_places=0)
+    numerocamera = models.DecimalField(db_column='numeroCamera', max_digits=3, decimal_places=0)  # Field name made lowercase.
+    camera = models.ForeignObject(
+        Camera,
+        on_delete=models.DO_NOTHING,
+        from_fields=('piano', 'numerocamera'),
+        to_fields=('piano', 'numerocamera'),
+    )
     data = models.DateField()
     documentoidentitaaddetto = models.ForeignKey(Personale, models.DO_NOTHING, db_column='documentoIdentitaAddetto')  # Field name made lowercase.
 
